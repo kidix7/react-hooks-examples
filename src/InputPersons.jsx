@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState } from 'react';
 import Form  from './Form';
 import { map } from 'lodash';
 
@@ -6,8 +6,7 @@ export default () => {
 
     const [people, setPeople] = useState([]);
     
-    return (
-        <Fragment>
+    return <>
             <div>
                 <h3> Insert Person: </h3>
                 <Form
@@ -16,5 +15,5 @@ export default () => {
                 />
                 { map(people, (val) => <p key={val}> {val} </p>) }
             </div>
-        </Fragment>
-  )};
+          </>
+  };
