@@ -1,14 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import useInputValue from "./Hooks/useInputValue";
 
-const useInputValue = initialValue => {
-  const [value, setValue] = useState(initialValue);
-
-  return {
-    value,
-    onChange: e => setValue(e.target.value),
-    resetValue: () => setValue("")
-  };
-};
 
 export default ({ onSubmit }) => {
   const { resetValue, ...text } = useInputValue("");
