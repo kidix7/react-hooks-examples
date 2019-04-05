@@ -1,8 +1,7 @@
 import React from "react";
-import useInputValue from "./Hooks/useInputValue";
+import useInputValue from "../Hooks/useInputValue";
 
-
-export default ({ onSubmit }) => {
+export default ({ onSubmit }, type="text") => {
   const { resetValue, ...text } = useInputValue("");
 
   return (

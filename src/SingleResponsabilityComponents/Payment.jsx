@@ -1,11 +1,14 @@
-import React, { useState , Fragment} from "react";
+import React from "react";
 import { map } from 'lodash';
+import  Form  from './Form';
+import useInputValue from "../Hooks/useInputValue";
 
-export default (selectedPeople, {onChange}) => {
+export default (selectedPeople, {onChange, onChangeAmount}) => {
    
-  return <> Select People:
+  return <> <h5> Select People: </h5>
           { map(selectedPeople, (val) => <>
               <input 
+                required
                 type='checkbox' 
                 key={`chbox-${val}`} 
                 checked={val.isSelected} 
@@ -15,8 +18,7 @@ export default (selectedPeople, {onChange}) => {
                   {val.name} 
             </> )}
 
-
-
+            <h5> Insert amount: </h5>
+            <input type="number" onChange={e => onChangeAmount(e)}/>
       </>;
-
 };

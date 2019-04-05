@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Form  from './Form';
 import { map } from 'lodash';
 
@@ -6,7 +6,7 @@ export default (people, { onSubmit }) => {
 
     return <>
             <div>
-                <h3> Insert Person: </h3>
+                <h5> Insert Person: </h5>
                 <Form
                   placeholder='Insert Name'
                   onSubmit={onSubmit}
@@ -14,4 +14,4 @@ export default (people, { onSubmit }) => {
                 { map(people, (val) => <p key={val}> {val} </p>) }
             </div>
           </>
-  };
+};

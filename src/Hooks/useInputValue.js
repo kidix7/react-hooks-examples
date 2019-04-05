@@ -5,10 +5,11 @@ import { useState } from 'react';
 export default (initialValue) => 
 {
     const [value, setValue] = useState(initialValue);
-    
+    const initVal = initialValue;
+
     return {
         value,
         onChange: e => setValue(e.target.value),
-        resetValue: () => setValue("")
+        resetValue: () => setValue(initVal)
     };
 }
