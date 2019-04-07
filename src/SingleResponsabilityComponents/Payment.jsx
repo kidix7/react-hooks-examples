@@ -1,7 +1,5 @@
 import React from "react";
 import { map } from 'lodash';
-import  Form  from './Form';
-import useInputValue from "../Hooks/useInputValue";
 
 export default (selectedPeople, {onChange, onChangeAmount}) => {
    

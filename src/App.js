@@ -1,15 +1,23 @@
-import "./App.css";
-import React, { Fragment , useState } from "react";
-import { Payment, SelectPerson, InputPersons, PeopleDebtLogList } from "./SingleResponsabilityComponents";
+import React, { Fragment , useState, useEffect } from 'react';
+import { Payment, SelectPerson, InputPersons, PeopleDebtLogList } from './SingleResponsabilityComponents';
 import { map, filter } from 'lodash';
 
 export default () => {
 
-  const [people, setPeople] = useState([]);
+  const [people, setPeople] = useState(JSON.parse(localStorage.getItem('people') || '[]'));
   const [personWhoPaied, setPersonWhoPaied] = useState("");
   const [selectedPeople, setSelectedPeople] = useState([]);
-  const [peopleDebts, setPeopleDebts] = useState(undefined);
+  const [peopleDebts, setPeopleDebts] = useState(JSON.parse(localStorage.getItem('peopleDebts') || '[]'));
   const [amount, setAmount] = useState(0);
+
+  useEffect(() => {
+    localStorage.setItem('people', JSON.stringify(people || []));
+  }, [people]);
+
+  useEffect(() => {
+    localStorage.setItem('peopleDebts', JSON.stringify(peopleDebts || []));
+  }, [peopleDebts]);
+
 
   const onSubmitInputPerson = function(e) {
     setPeople([e,...people]);
@@ -42,7 +50,7 @@ export default () => {
 
     setSelectedPeople(resetSelectedPeople);
     
-    setPeopleDebts(result);
+    setPeopleDebts([result , ...peopleDebts]);
   }
 
   const inputPersons = InputPersons(people, {onSubmit: onSubmitInputPerson});
