@@ -6,7 +6,7 @@ export default () => {
 
   const [people, setPeople] = useState(JSON.parse(localStorage.getItem('people') || '[]'));
   const [personWhoPaied, setPersonWhoPaied] = useState("");
-  const [selectedPeople, setSelectedPeople] = useState([]);
+  const [selectedPeople, setSelectedPeople] = useState(JSON.parse(localStorage.getItem('selectedPeople') || '[]'));
   const [peopleDebts, setPeopleDebts] = useState(JSON.parse(localStorage.getItem('peopleDebts') || '[]'));
   const [amount, setAmount] = useState(0);
 
@@ -17,6 +17,10 @@ export default () => {
   useEffect(() => {
     localStorage.setItem('peopleDebts', JSON.stringify(peopleDebts || []));
   }, [peopleDebts]);
+
+  useEffect(() => {
+    localStorage.setItem('selectedPeople', JSON.stringify(selectedPeople || []));
+  }, [selectedPeople]);
 
 
   const onSubmitInputPerson = function(e) {
@@ -41,7 +45,7 @@ export default () => {
     // TODO: check if fields are filled 👍
     
     let result = {
-      person: personWhoPaied,
+      person: personWhoPaied || people[0] || '',
       peopleInvolved: filter(selectedPeople, p => p.isSelected),
       amount: amount,
     };
