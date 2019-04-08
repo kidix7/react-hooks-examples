@@ -1,11 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Form  from './Form';
-import { map } from 'lodash';
-import { PeopleContext } from '../Context';
 
 export default ({ onSubmit }) => {
-
-  const people = useContext(PeopleContext);
 
   return <>
           <div>
