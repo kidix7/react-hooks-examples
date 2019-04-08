@@ -1,6 +1,8 @@
 import React, { Fragment , useState, useEffect } from 'react';
 import { Payment, SelectPerson, InputPersons, PeopleDebtLogList } from './SingleResponsabilityComponents';
 import { map, filter } from 'lodash';
+import { PeopleContext, SelectedPeopleContext, PeopleDebtsContext} from './Context';
+
 
 export default () => {
 
@@ -57,22 +59,22 @@ export default () => {
     setPeopleDebts([result , ...peopleDebts]);
   }
 
-  const inputPersons = InputPersons(people, {onSubmit: onSubmitInputPerson});
-  
-  const selectPerson = SelectPerson(people, {onChange: onSetNewPerson});
-
-  const payment = Payment(selectedPeople, {onChange: onChangePayment, onChangeAmount: onChangeSetAmount});
-
-  const peoplesDebts = PeopleDebtLogList(peopleDebts);
-
   return (
     <Fragment>
-        {inputPersons}
-        {selectPerson}
-        {payment}
+      <PeopleContext.Provider value={people}>
+
+        <InputPersons onSubmit={onSubmitInputPerson} />
+        <SelectPerson onChange={onSetNewPerson} />
+        <SelectedPeopleContext.Provider value={selectedPeople}>
+          <Payment onChange={onChangePayment} onChangeAmount={onChangeSetAmount} />
+        </SelectedPeopleContext.Provider>
+
         <input type="submit" value="Confirm" onClick={e => onClickSubmit(e)}/>
 
-        {peoplesDebts}
+      <PeopleDebtsContext.Provider value={peopleDebts} >
+        <PeopleDebtLogList />
+      </PeopleDebtsContext.Provider>
+      </PeopleContext.Provider>
     </Fragment>
   );
 };

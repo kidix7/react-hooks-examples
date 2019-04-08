@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { map } from 'lodash';
+import { SelectedPeopleContext } from "../Context";
 
-export default (selectedPeople, {onChange, onChangeAmount}) => {
+export default ({onChange, onChangeAmount}) => {
    
+  const selectedPeople = useContext(SelectedPeopleContext);
+
   return <> <h5> Select People: </h5>
           { map(selectedPeople, (val) => <>
               <input 

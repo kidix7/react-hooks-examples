@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { map , isEmpty } from 'lodash';
+import { PeopleDebtsContext } from '../Context';
 
-export default (peoplesDebts) => {
+export default () => {
     
+    const peoplesDebts = useContext(PeopleDebtsContext);
+
     return !isEmpty(peoplesDebts) && 
     
     <div className="">
