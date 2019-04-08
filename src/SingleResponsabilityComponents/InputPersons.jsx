@@ -14,7 +14,6 @@ export default ({ onSubmit }) => {
                 placeholder='Insert Name'
                 onSubmit={onSubmit}
               />
-              { map(people, (val) => <p key={val}> {val} </p>) }
           </div>
         </>
 };

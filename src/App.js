@@ -44,8 +44,6 @@ export default () => {
   } 
   
   const onClickSubmit = function(e) {
-    // TODO: check if fields are filled 👍
-    
     let result = {
       person: personWhoPaied || people[0] || '',
       peopleInvolved: filter(selectedPeople, p => p.isSelected),
@@ -62,18 +60,16 @@ export default () => {
   return (
     <Fragment>
       <PeopleContext.Provider value={people}>
+            <InputPersons onSubmit={onSubmitInputPerson} />
+            <SelectPerson onChange={onSetNewPerson} />
+            <SelectedPeopleContext.Provider value={selectedPeople}>
+              <Payment onChange={onChangePayment} onChangeAmount={onChangeSetAmount} />
+            </SelectedPeopleContext.Provider>
 
-        <InputPersons onSubmit={onSubmitInputPerson} />
-        <SelectPerson onChange={onSetNewPerson} />
-        <SelectedPeopleContext.Provider value={selectedPeople}>
-          <Payment onChange={onChangePayment} onChangeAmount={onChangeSetAmount} />
-        </SelectedPeopleContext.Provider>
-
-        <input type="submit" value="Confirm" onClick={e => onClickSubmit(e)}/>
-
-      <PeopleDebtsContext.Provider value={peopleDebts} >
-        <PeopleDebtLogList />
-      </PeopleDebtsContext.Provider>
+            <input type="submit" value="Confirm" onClick={e => onClickSubmit(e)}/>
+          <PeopleDebtsContext.Provider value={peopleDebts} >
+            <PeopleDebtLogList />
+          </PeopleDebtsContext.Provider>
       </PeopleContext.Provider>
     </Fragment>
   );
