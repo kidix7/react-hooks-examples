@@ -22,6 +22,7 @@ class App extends React.Component {
   render(){
     return( 
       <div>
+        <h2> Using Class Component </h2>
           <ul className='list-group'>
             {map(this.state.users, u => 
               <li className='list-group-item'>
